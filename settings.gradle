@@ -1,5 +1,5 @@
 rootProject.name = 'dao'
-include 'soring-data'
+include 'spring-data'
 include 'model'
 include 'mybatis'
 
