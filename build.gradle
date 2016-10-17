@@ -1,0 +1,26 @@
+group 'vtb'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    runtime.exclude group: 'org.apache.tomcat.embed'
+}
+
+dependencies {
+    compile 'org.jooq:jooq:3.8.4'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '1.4.1.RELEASE'
+
+
+
+//    compile group: 'postgresql', name: 'postgresql', version: '9.4.1208-jdbc42-atlassian-hosted'
+//    compile group: 'postgresql', name: 'postgresql', version: '9.3-1102.jdbc41'
+
+
+}

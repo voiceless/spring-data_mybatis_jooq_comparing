@@ -1,0 +1,5 @@
+rootProject.name = 'dao'
+include 'soring-data'
+include 'model'
+include 'mybatis'
+

@@ -1,0 +1,25 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="default">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>model.Feed</class>
+        <class>model.FeedInstance</class>
+        <class>model.FeedInstanceException</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+            <property name="hibernate.jdbc.batch_size" value="50"/>
+            <property name="hibernate.cache.region.factory_class"
+                      value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
+            <property name="hibernate.cache.use_second_level_cache" value="true"/>
+            <property name="hibernate.cache.use_query_cache" value="true"/>
+            <property name="hibernate.ddl-auto" value="none"/>
+            <property name="database-platform" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+            <property name="hibernate.current_session_context_class"
+                      value="org.springframework.orm.hibernate5.SpringSessionContext"/>
+            <property name="hibernate.naming-strategy" value="org.hibernate.cfg.DefaultNamingStrategy"/>
+        </properties>
+    </persistence-unit>
+</persistence>
