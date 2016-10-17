@@ -29,6 +29,17 @@ public interface FeedInstanceMapper {
     @Select("SELECT * from FeedInstanceException WHERE feedInstanceId=#{feedInstanceId}")
     List<FeedInstanceException> getExceptions();
 
-    @Insert("INSERT INTO feedInstance")
+    @Insert("INSERT INTO feedInstance (feedId, description) VALUES (#{feed.id}, #{description})")
+    @Options(useGeneratedKeys = true, keyColumn = "id")
     void insertFeedInstance(FeedInstance feedInstance);
+
+    @Select("SELECT * FROM feedInstance")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "feed", column = "feedId", one = @One(select = "getFeed", fetchType = FetchType.EAGER)),
+            @Result(property = "date", column = "date"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "exceptions", column = "id", many = @Many(select = "getExceptions", fetchType = FetchType.EAGER))
+    })
+    List<FeedInstance> selectAll();
 }

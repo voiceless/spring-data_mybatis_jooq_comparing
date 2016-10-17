@@ -1,6 +1,7 @@
 package model;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
@@ -23,6 +24,7 @@ public class FeedInstanceException {
     }
 
     public FeedInstanceException(FeedInstance feedInstance, String description) {
+        Assert.notNull(feedInstance);
         this.feedInstance = feedInstance;
         this.description = description;
     }

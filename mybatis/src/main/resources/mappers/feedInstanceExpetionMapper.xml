@@ -7,14 +7,14 @@
     <resultMap id="exceptionMap" type="model.FeedInstanceException">
         <id column="id" property="id"/>
         <result column="description" property="description"/>
-        <association property="feedInstance"  column="feedInstanceId" select="selectFeedInstance"/>
+        <association property="feedInstance" column="feedInstanceId" select="selectFeedInstance"/>
     </resultMap>
 
     <select id="selectFeedInstance" parameterType="long">
         SELECT * FROM feedInstance WHERE id=#{feedInstanceId}
     </select>
 
-    <insert id="insertException">
+    <insert id="insertException" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO feedInstanceException(feedInstanceId, description) VALUES (#{feedInstance.id}, #{description})
     </insert>
 

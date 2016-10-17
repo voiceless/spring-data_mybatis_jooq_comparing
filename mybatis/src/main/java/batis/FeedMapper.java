@@ -2,6 +2,7 @@ package batis;
 
 import model.Feed;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -13,5 +14,6 @@ public interface FeedMapper {
     Feed selectFeed(long id);
 
     @Insert("INSERT INTO feed(name, description) VALUES(#{name}, #{description})")
+    @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insertFeed(Feed feed);
 }

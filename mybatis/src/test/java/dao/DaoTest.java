@@ -2,6 +2,8 @@ package dao;
 
 import batis.FeedInstanceExceptionMapper;
 import batis.FeedInstanceMapper;
+import batis.FeedMapper;
+import model.Feed;
 import model.FeedInstance;
 import model.FeedInstanceException;
 import org.apache.ibatis.io.Resources;
@@ -12,6 +14,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 
 /**
  * Created by pbezglasnyi on 14.10.2016.
@@ -23,12 +26,13 @@ public class DaoTest {
         try (InputStream stream = Resources.getResourceAsStream("mybatis-config.xml")) {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(stream);
             SqlSession session = sqlSessionFactory.openSession();
-            /*FeedMapper mapper = session.getMapper(FeedMapper.class);
-            Feed feed = new Feed("feed new name 3" , "description");
+            FeedMapper mapper = session.getMapper(FeedMapper.class);
+            Feed feed = new Feed("feed new name 3", "description");
             mapper.insertFeed(feed);
-            Feed fromBatis = mapper.selectFeed(4L);*/
+            Feed fromBatis = mapper.selectFeed(4L);
             FeedInstanceMapper feedInstanceMapper = session.getMapper(FeedInstanceMapper.class);
-            FeedInstance feedInstance = feedInstanceMapper.selectFeedInstance(1L);
+            FeedInstance feedInstance = new FeedInstance(feed, LocalDateTime.now(), "dasd");
+            feedInstanceMapper.insertFeedInstance(feedInstance);
             FeedInstanceExceptionMapper exceptionMapper = session.getMapper(FeedInstanceExceptionMapper.class);
             exceptionMapper.insertException(new FeedInstanceException(feedInstance, "SOME EXCEPTION"));
             FeedInstanceException feedInstanceException = exceptionMapper.findException(8L);
