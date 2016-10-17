@@ -4,6 +4,7 @@ import org.apache.ibatis.type.Alias;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,8 +22,17 @@ public class FeedInstance {
     private Feed feed;
     private LocalDateTime date;
     private String description;
-    @OneToMany(mappedBy = "feedInstance", fetch = FetchType.LAZY)
-    private List<FeedInstanceException> exceptions;
+    @OneToMany(mappedBy = "feedInstance", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<FeedInstanceException> exceptions = new ArrayList<>();
+
+    public FeedInstance() {
+    }
+
+    public FeedInstance(Feed feed, LocalDateTime date, String description) {
+        this.feed = feed;
+        this.date = date;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -63,5 +73,16 @@ public class FeedInstance {
 
     public void setExceptions(List<FeedInstanceException> exceptions) {
         this.exceptions = exceptions;
+    }
+
+    @Override
+    public String toString() {
+        return "FeedInstance{" +
+                "id=" + id +
+                ", feed=" + feed +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                ", exceptions=" + exceptions +
+                '}';
     }
 }

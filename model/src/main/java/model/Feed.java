@@ -2,10 +2,9 @@ package model;
 
 import org.apache.ibatis.type.Alias;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by pbezglasnyi on 13.10.2016.
@@ -19,6 +18,13 @@ public class Feed {
     private Long id;
     private String name;
     private String description;
+    @ManyToMany
+    @JoinTable(
+            name = "FEED_PROJ",
+            joinColumns = @JoinColumn(name = "feed_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "proj_id", referencedColumnName = "id")
+    )
+    private List<Project> projects = new ArrayList<>();
 
     public Feed() {
     }
@@ -52,12 +58,21 @@ public class Feed {
         this.description = description;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
     @Override
     public String toString() {
         return "Feed{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", projects=" + projects +
                 '}';
     }
 }

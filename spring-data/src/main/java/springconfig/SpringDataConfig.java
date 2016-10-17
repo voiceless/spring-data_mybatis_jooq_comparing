@@ -3,6 +3,7 @@ package springconfig;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Profile;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created by pbezglasnyi on 14.10.2016.
