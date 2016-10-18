@@ -43,4 +43,18 @@ public class DaoTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void fedTest() {
+        try (InputStream stream = Resources.getResourceAsStream("mybatis-config.xml")) {
+            SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(stream);
+            SqlSession session = sqlSessionFactory.openSession();
+            FeedMapper mapper = session.getMapper(FeedMapper.class);
+            Feed feed = mapper.selectFeedWithProject(29L);
+            int i = 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

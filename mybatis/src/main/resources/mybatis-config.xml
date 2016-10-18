@@ -25,6 +25,7 @@
         <mapper class="batis.FeedMapper"/>
         <mapper class="batis.FeedInstanceMapper"/>
         <mapper resource="mappers/feedInstanceExpetionMapper.xml"/>
+        <mapper resource="mappers/feedMapper.xml"/>
     </mappers>
 
 

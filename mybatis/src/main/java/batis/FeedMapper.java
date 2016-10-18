@@ -16,4 +16,6 @@ public interface FeedMapper {
     @Insert("INSERT INTO feed(name, description) VALUES(#{name}, #{description})")
     @Options(useGeneratedKeys = true, keyColumn = "id", keyProperty = "id")
     void insertFeed(Feed feed);
+
+    Feed selectFeedWithProject(long id);
 }

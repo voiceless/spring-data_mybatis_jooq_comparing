@@ -18,7 +18,7 @@ public class Feed {
     private Long id;
     private String name;
     private String description;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "FEED_PROJ",
             joinColumns = @JoinColumn(name = "feed_id", referencedColumnName = "id"),
