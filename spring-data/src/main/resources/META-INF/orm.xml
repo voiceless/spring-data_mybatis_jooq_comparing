@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<entity-mappings
+        xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <persistence-unit-metadata>
+        <xml-mapping-metadata-complete/>
+        <persistence-unit-defaults>
+            <schema>myschema</schema>
+            <catalog>mycatalog</catalog>
+            <cascade-persist/>
+        </persistence-unit-defaults>
+    </persistence-unit-metadata>
+    <named-native-query name="feedSelectWithProj" result-set-mapping="feed_mapping">
+        <query>
+            SELECT
+            f.id as f_id,
+            f.name as f_name,
+            f.description as f_description,
+            p.id as p_id,
+            p.name as p_name
+            FROM feed f
+            LEFT OUTER JOIN FEED_PROJ fp ON f.id=fp.feed_id
+            LEFT OUTER JOIN project p ON fp.proj_id=p.id
+            WHERE f.id=#{id}
+        </query>
+    </named-native-query>
+    <sql-result-set-mapping name="feed_mapping">
+        <column-result name="feed_id"/>
+    </sql-result-set-mapping>
+</entity-mappings>

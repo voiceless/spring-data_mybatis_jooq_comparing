@@ -43,5 +43,7 @@
         </property>
     </bean>
 
+    <bean class="dao.impl.FeedDaoImpl"/>
+
 
 </beans>
