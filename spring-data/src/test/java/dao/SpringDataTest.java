@@ -64,7 +64,15 @@ public class SpringDataTest {
     @Transactional
     @Rollback
     public void feedSqlTest() {
-        List<Feed> f = feedDao.selectWithSql(29L);
+        List<Feed> f = feedDao.selectWithSql(9L);
+        int i = 0;
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void feedCriteria() {
+        List<Feed> f = feedDao.selectCriteria(10L);
         int i = 0;
     }
 
@@ -87,6 +95,21 @@ public class SpringDataTest {
         feedInstanceDao.save(feedInstance);
         List<FeedInstance> feedInstances = feedInstanceDao.findByIds(LongStream.range(0, 100).mapToObj(i -> i).collect(Collectors.toList()));
         System.out.println(feedInstances);
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void instTest() {
+        FeedInstance feedInstance = feedInstanceDao.findOne(10L);
+        int i = 0;
+    }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void findOneFeed() {
+        feedDao.findOne(29L);
     }
 
 }

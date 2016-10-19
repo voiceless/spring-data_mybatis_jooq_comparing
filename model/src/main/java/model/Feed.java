@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Alias("Feed")
 @Entity
+@NamedEntityGraph(name = "Feed.projects", attributeNodes = @NamedAttributeNode("projects"))
 public class Feed {
 
     @Id

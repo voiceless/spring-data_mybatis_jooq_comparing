@@ -10,4 +10,6 @@ import java.util.List;
 public interface FeedDaoExt {
 
     List<Feed> selectWithSql(long feedId);
+
+    List<Feed> selectCriteria(long projId);
 }
