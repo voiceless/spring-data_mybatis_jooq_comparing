@@ -11,4 +11,7 @@ public interface FeedDao {
 
     @Transactional(propagation = Propagation.MANDATORY)
     Long insertFeed(Feed feed);
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    Feed selectFeedWithProjects(long feedId);
 }

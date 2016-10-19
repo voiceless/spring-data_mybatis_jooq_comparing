@@ -31,6 +31,12 @@ public class Feed {
     public Feed() {
     }
 
+    public Feed(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public Feed(String name, String description) {
         this.name = name;
         this.description = description;

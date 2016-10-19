@@ -4,15 +4,7 @@
         xmlns="http://java.sun.com/xml/ns/persistence/orm"
         version="2.0">
 
-    <persistence-unit-metadata>
-        <xml-mapping-metadata-complete/>
-        <persistence-unit-defaults>
-            <schema>myschema</schema>
-            <catalog>mycatalog</catalog>
-            <cascade-persist/>
-        </persistence-unit-defaults>
-    </persistence-unit-metadata>
-    <named-native-query name="feedSelectWithProj" result-set-mapping="feed_mapping">
+    <named-native-query name="feedSelectWithProj" result-set-mapping="feed_proj_mapping">
         <query>
             SELECT
             f.id as f_id,
@@ -23,10 +15,29 @@
             FROM feed f
             LEFT OUTER JOIN FEED_PROJ fp ON f.id=fp.feed_id
             LEFT OUTER JOIN project p ON fp.proj_id=p.id
-            WHERE f.id=#{id}
+            WHERE f.id=:feedId
         </query>
     </named-native-query>
+
     <sql-result-set-mapping name="feed_mapping">
-        <column-result name="feed_id"/>
+        <entity-result entity-class="model.Feed">
+            <field-result name="id" column="f_id"/>
+            <field-result name="name" column="f_name"/>
+            <field-result name="description" column="f_description"/>
+        </entity-result>
+        <entity-result entity-class="model.Project">
+            <field-result name="id" column="p_id"/>
+            <field-result name="name" column="p_name"/>
+        </entity-result>
+    </sql-result-set-mapping>
+
+    <sql-result-set-mapping name="feed_proj_mapping">
+        <entity-result entity-class="model.FeedProjectNode">
+            <field-result name="f_id" column="f_id"/>
+            <field-result name="f_name" column="f_name"/>
+            <field-result name="f_description" column="f_description"/>
+            <field-result name="p_id" column="p_id"/>
+            <field-result name="p_name" column="p_name"/>
+        </entity-result>
     </sql-result-set-mapping>
 </entity-mappings>

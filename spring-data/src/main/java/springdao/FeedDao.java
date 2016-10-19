@@ -11,5 +11,5 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional(propagation = Propagation.REQUIRED)
 @Repository
-public interface FeedDao extends CrudRepository<Feed, Long> {
+public interface FeedDao extends CrudRepository<Feed, Long>, FeedDaoExt {
 }

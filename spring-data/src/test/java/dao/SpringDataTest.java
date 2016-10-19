@@ -63,6 +63,14 @@ public class SpringDataTest {
     @Test
     @Transactional
     @Rollback
+    public void feedSqlTest() {
+        List<Feed> f = feedDao.selectWithSql(29L);
+        int i = 0;
+    }
+
+    @Test
+    @Transactional
+    @Rollback
     public void testInstance() {
         Project project = new Project("Sample");
         projectDao.save(project);

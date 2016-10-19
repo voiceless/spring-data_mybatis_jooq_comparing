@@ -49,4 +49,11 @@ public class JooqTest {
         long id = feedDao.insertFeed(feed);
         int i = 0;
     }
+
+    @Test
+    @Transactional
+    @Rollback
+    public void feedSelectTest() {
+        Feed feed = feedDao.selectFeedWithProjects(29L);
+    }
 }
